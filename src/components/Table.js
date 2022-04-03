@@ -34,10 +34,10 @@ const Table = ({ bank_data }) => {
         <table className="table table-zebra w-full">
           <thead>
             <tr>
-              <th className="border">Bank</th>
-              <th className="border">IFSC</th>
-              <th className="border">Branch</th>
-              <th className="border">Address</th>
+              <th className="border text-center	align-middle">Bank</th>
+              <th className="border text-center	align-middle">IFSC</th>
+              <th className="border text-center	align-middle">Branch</th>
+              <th className="border text-center	align-middle">Address</th>
             </tr>
           </thead>
           <tbody>
