@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import useFetch from "../useFetch";
- import CardOfBank from "./CardOfBank";
+import CardOfBank from "./CardOfBank";
+ import CircularIndeterminate from './Loader'
 const BankCard = () => {
   const { id } = useParams();
   const { error, isPending, data } = useFetch(
@@ -15,6 +16,7 @@ const BankCard = () => {
 
     return (
       <>
+        {isPending && <CircularIndeterminate />}
         {!isPending && (
           <>
             <CardOfBank

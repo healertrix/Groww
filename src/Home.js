@@ -4,7 +4,7 @@ import useFetch from "./useFetch";
 import ReactPaginate from "react-paginate";
 import DropDown from "./components/DropDown";
 import Search from "./components/Search";
-
+import CircularIndeterminate from './components/Loader'
 
 
 
@@ -59,6 +59,7 @@ const Home = () => {
         />
         <Search handleSearchChange={handleSearchChange} />
       </div>
+      {isPending&&(<CircularIndeterminate/>)}
       {!isPending && (
         <div className="m-2">
           <Table bank_data={pageData} />
