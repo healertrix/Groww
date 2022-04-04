@@ -1,16 +1,23 @@
 import { useState } from "react";
-import Table from './components/Table';
-import useFetch from './useFetch';
+import Table from "./components/Table";
+import useFetch from "./useFetch";
 import ReactPaginate from "react-paginate";
+import DropDown from "./components/DropDown";
+import Search from "./components/Search";
 
-const Body = () => {
 
+
+
+const Home = () => {
   const perPage = 10;
   const [currentPage, setCurrentPage] = useState(0);
+  const [city, setCity] = useState("MUMBAI");
+  const [option, setOption] = useState("ifsc");
+  const [search, setSearch] = useState("");
   const { error, isPending, data } = useFetch(
-    "https://vast-shore-74260.herokuapp.com/banks?city=MUMBAI"
+    `https://vast-shore-74260.herokuapp.com/banks?city=${city}`
   );
-console.log(error);
+  console.log(error);
   const handlePageClick = ({ selected: selectPage }) => {
     console.log("selected page", selectPage);
     setCurrentPage(selectPage);
@@ -19,23 +26,42 @@ console.log(error);
   const offset = currentPage * perPage;
   console.log(offset);
   // console.log(data)
-    let pageCount = 10;
-    let currentData=[];
-    if (!isPending) {
-   pageCount = Math.ceil(data.length / perPage);
+  let pageCount = 10;
+  let currentData = [];
+  if (!isPending) {
+    pageCount = Math.ceil(data.length / perPage);
 
- currentData = data.slice(offset, offset + perPage);
-
-    }
-
+    currentData = data.slice(offset, offset + perPage);
+  }
   
-    
-
+  const pageData = currentData.filter(
+    (content) => (content[option].toUpperCase()).includes(search.toUpperCase())
+  );
+  console.log(pageData);
+  const handleSearchChange = (e) => {
+    setSearch(e.target.value);
+    console.log(e.target.value);
+  }
+  const handleChangeCity = (e) => {
+  setCity(e.target.value);
+  console.log(e.target.value);
+};
+  const handleChangeOption = (e) => {
+    setOption(e.target.value);
+    console.log(e.target.value);
+  };
   return (
     <>
+      <div className="flex justify-center gap-2 m-3">
+        <DropDown
+          handleChangeCity={handleChangeCity}
+          handleChangeOption={handleChangeOption}
+        />
+        <Search handleSearchChange={handleSearchChange} />
+      </div>
       {!isPending && (
         <div className="m-2">
-          <Table bank_data={currentData} />
+          <Table bank_data={pageData} />
         </div>
       )}
       {!isPending && (
@@ -65,4 +91,4 @@ console.log(error);
   );
 };
 
-export default Body;
+export default Home;

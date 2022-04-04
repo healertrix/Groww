@@ -1,7 +1,15 @@
-import Body from './Body'
+import Home from "./Home";
+import BankCard from "./components/BankCard"
+import { BrowserRouter as Router, Route, Routes  } from "react-router-dom";
+
 function App() {
   return (
-      <Body/>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/bank-details/:id" element={<BankCard />} />
+      </Routes>
+    </Router>
   );
 }
 
