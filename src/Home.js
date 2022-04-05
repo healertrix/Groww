@@ -5,7 +5,7 @@ import ReactPaginate from "react-paginate";
 import DropDown from "./components/DropDown";
 import Search from "./components/Search";
 import CircularIndeterminate from './components/Loader'
-
+import Perpage from './components/Perpage'
 
 
 const Home = () => {
@@ -83,8 +83,9 @@ const Home = () => {
         <DropDown
           handleChangeCity={handleChangeCity}
           handleChangeOption={handleChangeOption}
-          handleChangePage={handleChangePage}
+          // handleChangePage={handleChangePage}
         />
+        <Perpage handleChangePage={handleChangePage} />
         <Search handleSearchChange={handleSearchChange} />
       </div>
       {isPending && <CircularIndeterminate />}
