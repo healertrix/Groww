@@ -21,9 +21,9 @@ Open [https://bankgroww.netlify.app/](https://bankgroww.netlify.app/) to open th
 - ✅  Based on the values of these dropdowns and the search query, user will locally filter
 the bank list and get the results .
 - ✅  There are be 2 routes.<br>
-   --> A. /all-banks => This route will house the Bank List component and the
+   - A. /all-banks => This route will house the Bank List component and the
     filter/search logic.<br>
-   --> B. /bank-details/{city}/{ifsc_code} => This route will display details of an
+   - B. /bank-details/{city}/{ifsc_code} => This route will display details of an
 individual bank with corresponding ifsc_code
 
 - ✅ Each Bank row in the table takes the user to the corresponding bank’s
@@ -41,4 +41,4 @@ search/submit button)
 ### Advanced features
 - ✅  Row size (Number of banks on each page) is 10 by default, but users can
 change this to a desired number.
-- ✅  Deploy this application on Heroku, GitHub, Netlify
+- ✅  Deployed this application Netlify
