@@ -18,9 +18,9 @@ const BankCard = () => {
   let cardData = 0;
   if (!isPending) {
     cardData = res.filter((content) => content.ifsc == id);
-    console.log(cardData[0]);
+    
     }
-    console.log(isPending);
+ 
 
     return (
       <>

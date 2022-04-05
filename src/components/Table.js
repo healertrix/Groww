@@ -27,7 +27,7 @@ const Table = ({ bank_data ,city}) => {
   };
 
   const res = dataFilter(bank_data);
-  console.log(res);
+  // console.log(res);
   return (
     <>
       <div className="overflow-x-auto">

@@ -38,15 +38,17 @@ const Home = () => {
   }
 
 
-
+  if (error) {
   console.log(error);
+}
+  
   const handlePageClick = ({ selected: selectPage }) => {
-    console.log("selected page", selectPage);
+  
     setCurrentPage(selectPage);
   };
 
   const offset = currentPage * perPage;
-  console.log(offset);
+  // console.log(offset);
   // console.log(data)
   let pageCount = 10;
   let currentData = [];
@@ -54,28 +56,28 @@ const Home = () => {
     pageCount = Math.ceil(res.length / perPage);
 
     currentData = res.slice(offset, offset + perPage);
-    console.log(currentData, "currdata");
+    // console.log(currentData, "currdata");
   }
-  console.log(currentData,"currdata");
+  // console.log(currentData,"currdata");
   const pageData = currentData.filter(
     (content) => (content[option].toUpperCase()).includes(search.toUpperCase())
   );
-  console.log(pageData);
+  // console.log(pageData);
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
-    console.log(e.target.value);
+    // console.log(e.target.value);
   }
   const handleChangeCity = (e) => {
   setCity(e.target.value);
-  console.log(e.target.value);
+  // console.log(e.target.value);
 };
   const handleChangeOption = (e) => {
     setOption(e.target.value);
-    console.log(e.target.value);
+    // console.log(e.target.value);
   };
   const handleChangePage = (e) => {
     setPerPage(e.target.value);
-    console.log(e.target.value);
+    // console.log(e.target.value);
   };
   return (
     <>
