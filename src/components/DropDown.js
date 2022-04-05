@@ -6,7 +6,7 @@ const DropDown = ({
   return (
     <>
       <div className="flex justify-center gap-2">
-        <div className="mb-3 xl:w-96">
+        <div className="mb-3 w-1/4	">
           <select
             className="form-select appearance-none
       block
@@ -62,7 +62,6 @@ const DropDown = ({
             <option value="address">Address</option>
           </select>
         </div>
-       
       </div>
     </>
   );
