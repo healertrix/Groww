@@ -9,7 +9,8 @@ import CircularIndeterminate from './components/Loader'
 
 
 const Home = () => {
-  const perPage = 10;
+  // const perPage = 10;
+  const [perPage,setPerPage]=useState(10);
   const [currentPage, setCurrentPage] = useState(0);
   const [city, setCity] = useState("MUMBAI");
   const [option, setOption] = useState("ifsc");
@@ -72,16 +73,21 @@ const Home = () => {
     setOption(e.target.value);
     console.log(e.target.value);
   };
+  const handleChangePage = (e) => {
+    setPerPage(e.target.value);
+    console.log(e.target.value);
+  };
   return (
     <>
       <div className="flex justify-center gap-2 m-3">
         <DropDown
           handleChangeCity={handleChangeCity}
           handleChangeOption={handleChangeOption}
+          handleChangePage={handleChangePage}
         />
         <Search handleSearchChange={handleSearchChange} />
       </div>
-      {(isPending)&&(<CircularIndeterminate/>)}
+      {isPending && <CircularIndeterminate />}
       {!isPending && (
         <div className="m-2">
           <Table bank_data={pageData} city={city} />
