@@ -1,5 +1,5 @@
 import  TableRow  from "./TableRow";
-const Table = ({ bank_data }) => {
+const Table = ({ bank_data ,city}) => {
 
   const dataFilter = (bank_data) => {
     const data = [];
@@ -42,7 +42,7 @@ const Table = ({ bank_data }) => {
           </thead>
           <tbody>
             {res.map((content, i) => (
-              <TableRow key={i} content={content} />
+              <TableRow key={i} content={content} city={ city} />
             ))}
           </tbody>
         </table>

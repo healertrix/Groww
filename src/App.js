@@ -9,7 +9,7 @@ function App() {
       <Routes>
         <Route path="/all-banks" element={<Home />} />
         <Route path="/" element={<Home />} />
-        <Route path="/bank-details/:id" element={<BankCard />} />
+        <Route path="/bank-details/:city/:id" element={<BankCard />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </Router>

@@ -3,13 +3,21 @@ import useFetch from "../useFetch";
 import CardOfBank from "./CardOfBank";
  import CircularIndeterminate from './Loader'
 const BankCard = () => {
-  const { id } = useParams();
-  const { error, isPending, data } = useFetch(
-    "https://vast-shore-74260.herokuapp.com/banks?city=MUMBAI"
+  const { id,city } = useParams();
+  let { error, isPending, data } = useFetch(
+    `https://vast-shore-74260.herokuapp.com/banks?city=${city}`
   );
+  let res = [];
+  if (localStorage.getItem(`data+${city}`) !== null) {
+    //...
+    res = JSON.parse(localStorage.getItem(`data+${city}`));
+    isPending = false;
+  } else {
+    isPending = true;
+  }
   let cardData = 0;
   if (!isPending) {
-    cardData = data.filter((content) => content.ifsc == id);
+    cardData = res.filter((content) => content.ifsc == id);
     console.log(cardData[0]);
     }
     console.log(isPending);

@@ -14,9 +14,30 @@ const Home = () => {
   const [city, setCity] = useState("MUMBAI");
   const [option, setOption] = useState("ifsc");
   const [search, setSearch] = useState("");
-  const { error, isPending, data } = useFetch(
+ 
+  // const { errorr, IsPending, data } = useFetch(
+  //   `https://vast-shore-74260.herokuapp.com/banks?city=${city}`
+  // );
+
+
+  let { error, isPending, data } = useFetch(
     `https://vast-shore-74260.herokuapp.com/banks?city=${city}`
   );
+  if (data != null) {
+      localStorage.setItem(`data+${city}`, JSON.stringify(data));
+
+  }
+  let res=[];
+  if (localStorage.getItem(`data+${city}`) !== null) {
+    //...
+    res = JSON.parse(localStorage.getItem(`data+${city}`));
+    isPending = false;
+  } else {
+    isPending = true;
+  }
+
+
+
   console.log(error);
   const handlePageClick = ({ selected: selectPage }) => {
     console.log("selected page", selectPage);
@@ -29,11 +50,12 @@ const Home = () => {
   let pageCount = 10;
   let currentData = [];
   if (!isPending) {
-    pageCount = Math.ceil(data.length / perPage);
+    pageCount = Math.ceil(res.length / perPage);
 
-    currentData = data.slice(offset, offset + perPage);
+    currentData = res.slice(offset, offset + perPage);
+    console.log(currentData, "currdata");
   }
-  
+  console.log(currentData,"currdata");
   const pageData = currentData.filter(
     (content) => (content[option].toUpperCase()).includes(search.toUpperCase())
   );
@@ -59,10 +81,10 @@ const Home = () => {
         />
         <Search handleSearchChange={handleSearchChange} />
       </div>
-      {isPending&&(<CircularIndeterminate/>)}
+      {(isPending)&&(<CircularIndeterminate/>)}
       {!isPending && (
         <div className="m-2">
-          <Table bank_data={pageData} />
+          <Table bank_data={pageData} city={city} />
         </div>
       )}
       {!isPending && (

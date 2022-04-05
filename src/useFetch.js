@@ -8,6 +8,19 @@ const useFetch = (url) => {
   useEffect(() => {
     const abortCont = new AbortController();
 
+    // const city = url.slice(50)
+    // console.log(city);
+    // if (localStorage.getItem(`data+${city}`) !== null) {
+    //   setIsPending(false);
+    //   const data = JSON.parse(localStorage.getItem(`data+${city}`));
+    //   console.log(data);
+    //   setData(data);
+    //   setError(null);
+    //   return () => abortCont.abort();
+    // }
+
+    // else { 
+
     fetch(url, { signal: abortCont.signal })
       .then((res) => {
         if (!res.ok) {
@@ -29,10 +42,13 @@ const useFetch = (url) => {
           setIsPending(false);
           setError(err.message);
         }
+
+
       });
 
     // abort the fetch
     return () => abortCont.abort();
+  // }
   }, [url]);
 
   return { data, isPending, error };
